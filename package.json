@@ -1,0 +1,55 @@
+{
+  "name": "profanity-checker-fr",
+  "version": "1.0.0",
+  "description": "French Profanity Filter is a lightweight and easy-to-use Node.js module to detect and filter offensive words (profanity, insults) in French sentences. Ideal for chat applications, comment moderation, and any service that requires clean user-generated content.",
+  "keywords": [
+    "bad",
+    "words",
+    "profanity",
+    "filter",
+    "blacklist",
+    "french",
+    "francais",
+    "insultes",
+    "vulgarité",
+    "censure",
+    "text",
+    "sanitizer",
+    "swear",
+    "checker",
+    "clean",
+    "language",
+    "french-badwords",
+    "moderation",
+    "text-filter",
+    "texte",
+    "moderateur",
+    "filtrage",
+    "vérification"
+  ],
+  "homepage": "https://github.com/JKS9/profanity-checker-fr#readme",
+  "bugs": {
+    "url": "https://github.com/JKS9/profanity-checker-fr/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JKS9/profanity-checker-fr.git"
+  },
+  "license": "MIT",
+  "author": "JKS9",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "ci": "npm run build",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  }
+}
