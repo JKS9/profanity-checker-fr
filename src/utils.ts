@@ -1,4 +1,4 @@
-import { badWords } from './words.js';
+import { badWords } from './words/words.js';
 
 export class FrenchProfanityFilter {
   private static badWordsSet = new Set(badWords);
@@ -6,7 +6,6 @@ export class FrenchProfanityFilter {
   private static normalizeSentence(sentence: string): string[] {
     return sentence
       .toLowerCase()
-      .replace(/[^\w\s]/g, '')
       .split(/\s+/);
   }
 
