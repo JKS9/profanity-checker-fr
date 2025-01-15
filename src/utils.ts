@@ -6,6 +6,7 @@ export class FrenchProfanityFilter {
   private static normalizeSentence(sentence: string): string[] {
     return sentence
       .toLowerCase()
+      .replace(/[^a-zA-Zàâäéèêëîïôöùûüç\s]/g, '')
       .split(/\s+/);
   }
 
