@@ -1,1 +1,1 @@
-export { add } from './utils.js';
+export { FrenchProfanityFilter } from './utils.js';
