@@ -1,10 +1,10 @@
 # profanity-checker-fr
 
-## 2.0.0
+## 1.0.2
 
-### Major Changes
+### Patch Changes
 
-- ca3d791: added hasBadWords and censoredSentence features
+- e0b206a: accent management update for the french language
 
 ## 1.0.1
 
