@@ -1,28 +1,28 @@
-import { FrenchProfanityFilter } from './utils.js';
+import { ProfanityCheckerFr } from './utils.js';
 import { test, expect } from 'vitest';
 
 test('hasBadWords detects bad words', () => {
   const sentence = 'ceci est une phrase avec un mot interdit';
-  expect(FrenchProfanityFilter.hasBadWords(sentence)).toBe(false);
+  expect(ProfanityCheckerFr.hasBadWords(sentence)).toBe(false);
 });
 
 test('hasBadWords detects bad words', () => {
   const sentence = "ceci est une phrase avec un mot interdit 'salope'";
-  expect(FrenchProfanityFilter.hasBadWords(sentence)).toBe(true);
+  expect(ProfanityCheckerFr.hasBadWords(sentence)).toBe(true);
 });
 
 test('hasBadWords detects no bad words', () => {
   const sentence = 'ceci est une phrase propre';
-  expect(FrenchProfanityFilter.hasBadWords(sentence)).toBe(false);
+  expect(ProfanityCheckerFr.hasBadWords(sentence)).toBe(false);
 });
 
 test('censoredSentence censors bad words', () => {
   const sentence = 'ceci est une phrase avec un mot con';
   const expected = 'ceci est une phrase avec un mot ***';
-  expect(FrenchProfanityFilter.censoredSentence(sentence)).toBe(expected);
+  expect(ProfanityCheckerFr.censoredSentence(sentence)).toBe(expected);
 });
 
 test('censoredSentence leaves clean sentence unchanged', () => {
   const sentence = 'ceci est une phrase propre';
-  expect(FrenchProfanityFilter.censoredSentence(sentence)).toBe(sentence);
+  expect(ProfanityCheckerFr.censoredSentence(sentence)).toBe(sentence);
 });

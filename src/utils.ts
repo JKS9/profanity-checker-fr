@@ -1,6 +1,6 @@
 import { badWords } from './words/words.js';
 
-export class FrenchProfanityFilter {
+export class ProfanityCheckerFr {
   private static badWordsSet = new Set(badWords);
 
   private static normalizeSentence(sentence: string): string[] {

@@ -1,1 +1,1 @@
-export { FrenchProfanityFilter } from './utils.js';
+export { ProfanityCheckerFr } from './utils.js';

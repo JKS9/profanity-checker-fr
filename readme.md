@@ -14,10 +14,10 @@ npm i profanity-checker-fr
 
 ### Import
 
-To use the coarseness filter, import the class `FrenchProfanityFilter` :
+To use the coarseness filter, import the class `ProfanityCheckerFr` :
 
 ```typescript
-import { FrenchProfanityFilter } from 'profanity-checker-fr';
+import { ProfanityCheckerFr } from 'profanity-checker-fr';
 ```
 
 ### Detection of forbidden words
@@ -26,7 +26,7 @@ To check whether a sentence contains forbidden words, use the method `hasBadWord
 
 ```typescript
 const sentence = "this is a sentence with a forbidden word 'salope'";
-const containsBadWords = FrenchProfanityFilter.hasBadWords(sentence);
+const containsBadWords = ProfanityCheckerFr.hasBadWords(sentence);
 
 console.log(containsBadWords); // Displays true or false
 ```
@@ -37,7 +37,7 @@ To censor forbidden words in a sentence, use the method `censoredSentence` :
 
 ```typescript
 const sentence = "this is a sentence with a forbidden word 'con'";
-const censored = FrenchProfanityFilter.censoredSentence(sentence);
+const censored = ProfanityCheckerFr.censoredSentence(sentence);
 console.log(censored); // Display the sentence with the censored words
 
 // this is a sentence with a forbidden word '***'
@@ -56,11 +56,11 @@ This method takes a sentence as input and returns the sentence with the forbidde
 ## Example
 
 ```typescript
-import { FrenchProfanityFilter } from 'profanity-checker-fr';
+import { ProfanityCheckerFr } from 'profanity-checker-fr';
 
 const sentence = "this is a sentence with a forbidden word 'connard'";
-console.log(FrenchProfanityFilter.hasBadWords(sentence)); // Display true
-console.log(FrenchProfanityFilter.censoredSentence(sentence)); // Display "this is a sentence with a forbidden word '*******'
+console.log(ProfanityCheckerFr.hasBadWords(sentence)); // Display true
+console.log(ProfanityCheckerFr.censoredSentence(sentence)); // Display "this is a sentence with a forbidden word '*******'
 ```
 
 ## License
