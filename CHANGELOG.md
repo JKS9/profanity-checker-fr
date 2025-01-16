@@ -1,5 +1,11 @@
 # profanity-checker-fr
 
+## 1.0.4
+
+### Patch Changes
+
+- 0ab5d1a: rename export module
+
 ## 1.0.3
 
 ### Patch Changes
