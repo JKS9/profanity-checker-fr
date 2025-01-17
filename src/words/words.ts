@@ -1,3 +1,6 @@
+/**
+ * French forbidden words list
+ */
 export const badWords: string[] = [
   'merde',
   'con',

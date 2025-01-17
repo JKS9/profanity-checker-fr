@@ -48,7 +48,7 @@
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "test": "vitest run",
+    "test": "vitest run src/test/",
     "local-release": "changeset version && changeset publish",
     "prepublishOnly": "npm run ci",
     "update": "npx changeset"
