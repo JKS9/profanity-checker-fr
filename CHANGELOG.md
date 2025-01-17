@@ -1,5 +1,11 @@
 # profanity-checker-fr
 
+## 1.1.0
+
+### Minor Changes
+
+- 131bb01: added module configuration, added words to the prohibited list and a whitelist of authorised words
+
 ## 1.0.4
 
 ### Patch Changes
