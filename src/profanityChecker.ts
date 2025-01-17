@@ -5,16 +5,13 @@ import { ProfanityConfig } from './profanityConfig.js';
  * Provides methods to check bad words in a sentence and censor them.
  */
 export class ProfanityChecker extends ProfanityConfig {
-
   /**
    * Normalizes a sentence by removing non-alphabetical characters and splitting it into words.
    * @param sentence - The sentence to normalize.
    * @returns An array of words from the sentence.
    */
   private static normalizeSentence(sentence: string): string[] {
-    return sentence
-      .replace(/[^a-zA-Zàâäéèêëîïôöùûüç\s]/g, '')
-      .split(/\s+/);
+    return sentence.replace(/[^a-zA-Zàâäéèêëîïôöùûüç\s]/g, '').split(/\s+/);
   }
 
   /**
@@ -25,7 +22,10 @@ export class ProfanityChecker extends ProfanityConfig {
   public static hasBadWords(sentence: string): boolean {
     const words = this.normalizeSentence(sentence);
     return words.some((word) => {
-      return this.badWordsSet.has(word.toLowerCase()) && !this.whiteListWordsSet.has(word.toLowerCase());
+      return (
+        this.badWordsSet.has(word.toLowerCase()) &&
+        !this.whiteListWordsSet.has(word.toLowerCase())
+      );
     });
   }
 
@@ -37,7 +37,8 @@ export class ProfanityChecker extends ProfanityConfig {
   public static censoredSentence(sentence: string): string {
     const words = this.normalizeSentence(sentence);
     const censoredWords = words.map((word) =>
-      this.badWordsSet.has(word.toLowerCase()) && !this.whiteListWordsSet.has(word.toLowerCase())
+      this.badWordsSet.has(word.toLowerCase()) &&
+      !this.whiteListWordsSet.has(word.toLowerCase())
         ? this.censoreSet.repeat(word.length)
         : word,
     );

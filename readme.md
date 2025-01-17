@@ -65,23 +65,22 @@ ProfanityConfig.addBadWords(['test', 'example']); // string or string[]
 ProfanityConfig.addWhiteList(['example']); // string or string[]
 
 // Check and censor a sentence
-const sentence: string = "This is a bad example test con";
+const sentence: string = 'This is a bad example test con';
 console.log(ProfanityChecker.hasBadWords(sentence)); // true or false
 console.log(ProfanityChecker.censoredSentence(sentence)); // This is a $$$ $$$$$ test
 ```
 
 ## Features
 
-| Method                         | Description                                                                 |
-| ------------------------------ | --------------------------------------------------------------------------- |
-| `hasBadWords(sentence: string): boolean`   | This method takes a sentence as input and returns `true` if the sentence contains forbidden words, otherwise `false`. |
-| `censoredSentence(sentence: string): string` | This method takes a sentence as input and returns the sentence with the forbidden words replaced by asterisks (`*`). |
-| `listbadWords(): string[]`     | This method returns all the bad words currently in the list.               |
-| `listWhiteListWords(): string[]` | This method returns all the words in the whitelist.                        |
-| `changeCensoredWords(): string` | This method changes the censorship symbol in the sentences.                |
-| `addBadWords(): (string OR string[])`  | This method adds new words to the list of forbidden words.                |
-| `addWhiteList(): string OR string[]` | This method adds new words to the list of words in the whitelist.          |
-
+| Method                                       | Description                                                                                                           |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `hasBadWords(sentence: string): boolean`     | This method takes a sentence as input and returns `true` if the sentence contains forbidden words, otherwise `false`. |
+| `censoredSentence(sentence: string): string` | This method takes a sentence as input and returns the sentence with the forbidden words replaced by asterisks (`*`).  |
+| `listbadWords(): string[]`                   | This method returns all the bad words currently in the list.                                                          |
+| `listWhiteListWords(): string[]`             | This method returns all the words in the whitelist.                                                                   |
+| `changeCensoredWords(): string`              | This method changes the censorship symbol in the sentences.                                                           |
+| `addBadWords(): (string OR string[])`        | This method adds new words to the list of forbidden words.                                                            |
+| `addWhiteList(): string OR string[]`         | This method adds new words to the list of words in the whitelist.                                                     |
 
 ## License
 

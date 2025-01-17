@@ -1,4 +1,4 @@
-import { badWords } from './words/words.js';  // Import the list of predefined bad words
+import { badWords } from './words/words.js'; // Import the list of predefined bad words
 
 /**
  * Configuration class for managing the profanity checker.
@@ -27,7 +27,7 @@ export class ProfanityConfig {
     if (typeof words === 'string') {
       this.badWordsSet.add(words.toLowerCase());
     } else {
-      words.forEach(word => this.badWordsSet.add(word.toLowerCase()));
+      words.forEach((word) => this.badWordsSet.add(word.toLowerCase()));
     }
   }
 
@@ -40,7 +40,7 @@ export class ProfanityConfig {
     if (typeof words === 'string') {
       this.whiteListWordsSet.add(words.toLowerCase());
     } else {
-      words.forEach(word => this.whiteListWordsSet.add(word.toLowerCase()));
+      words.forEach((word) => this.whiteListWordsSet.add(word.toLowerCase()));
     }
   }
 }

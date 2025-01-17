@@ -47,8 +47,8 @@ test('censoredSentence leaves clean sentence unchanged', () => {
 });
 
 test('whitelisted words are not censored', () => {
-  const sentence = "ceci est une phrase avec merde mais pas de censure";
-  const expected = "ceci est une phrase avec merde mais pas de censure";
+  const sentence = 'ceci est une phrase avec merde mais pas de censure';
+  const expected = 'ceci est une phrase avec merde mais pas de censure';
   expect(ProfanityChecker.censoredSentence(sentence)).toBe(expected);
 });
 
