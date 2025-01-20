@@ -5,8 +5,10 @@ import { test, expect, beforeAll } from 'vitest';
 // Configuration initiale
 beforeAll(() => {
   ProfanityConfig.changeCensoredWords('*');
-  ProfanityConfig.addBadWords(['salope', 'putain de merde', 'con']);
-  ProfanityConfig.addWhiteList(['merde']); // "merde" ne sera pas censuré même s'il est interdit
+  ProfanityConfig.addBadWords(['salope', 'putain de merde', 'con', 'delete']);
+  ProfanityConfig.deleteBadWords(['delete']); // "merde" ne sera pas censuré même s'il est interdit
+  ProfanityConfig.addWhiteList(['merde', 'white']); // "merde" ne sera pas censuré même s'il est interdit
+  ProfanityConfig.deleteWhiteList(['white']); // "merde" ne sera pas censuré même s'il est interdit
 });
 
 test('hasBadWords detects bad words', () => {
@@ -61,3 +63,5 @@ test('listWhiteListWords returns the correct list of whitelisted words', () => {
   const whiteListWordsList = ProfanityChecker.listWhiteListWords();
   expect(whiteListWordsList).toEqual(['merde']);
 });
+
+
