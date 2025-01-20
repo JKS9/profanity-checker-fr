@@ -62,12 +62,22 @@ import { ProfanityConfig, ProfanityChecker } from 'profanity-checker-fr';
 // Configure global settings
 ProfanityConfig.changeCensoredWords('$'); // string
 ProfanityConfig.addBadWords(['test', 'example']); // string or string[]
-ProfanityConfig.addWhiteList(['example']); // string or string[]
+ProfanityConfig.addWhiteList(['test']); // string or string[]
 
 // Check and censor a sentence
 const sentence: string = "This is a bad example test con";
 console.log(ProfanityChecker.hasBadWords(sentence)); // true or false
-console.log(ProfanityChecker.censoredSentence(sentence)); // This is a $$$ $$$$$ test
+console.log(ProfanityChecker.censoredSentence(sentence)); // This is a bad $$$$$$$ test $$$
+
+// Delete words
+ProfanityConfig.changeCensoredWords('$'); // string
+ProfanityConfig.deleteBadWords(['test', 'example']); // string or string[]
+ProfanityConfig.deleteWhiteList(['test']); // string or string[]
+
+// Check and censor a sentence
+const sentence: string = "This is a bad example test con";
+console.log(ProfanityChecker.hasBadWords(sentence)); // true or false
+console.log(ProfanityChecker.censoredSentence(sentence)); // This is a bad example test $$$
 ```
 
 ## Features
@@ -80,7 +90,9 @@ console.log(ProfanityChecker.censoredSentence(sentence)); // This is a $$$ $$$$$
 | `listWhiteListWords(): string[]` | This method returns all the words in the whitelist.                        |
 | `changeCensoredWords(): string` | This method changes the censorship symbol in the sentences.                |
 | `addBadWords(): (string OR string[])`  | This method adds new words to the list of forbidden words.                |
+| `deleteBadWords(): string OR string[]` | This method deletes words to the list of forbidden words.          |
 | `addWhiteList(): string OR string[]` | This method adds new words to the list of words in the whitelist.          |
+| `deleteWhiteList(): string OR string[]` | This method deletes words to the list of words in the whitelist.          |
 
 
 ## License
