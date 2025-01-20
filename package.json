@@ -1,6 +1,6 @@
 {
   "name": "profanity-checker-fr",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "French Profanity Filter is a lightweight and easy-to-use Node.js module to detect and filter offensive words (profanity, insults) in French sentences. Ideal for chat applications, comment moderation, and any service that requires clean user-generated content.",
   "keywords": [
     "bad",
