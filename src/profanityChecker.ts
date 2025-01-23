@@ -1,7 +1,6 @@
 import { ProfanityConfig } from './profanityConfig.js';
 
 export class ProfanityChecker extends ProfanityConfig {
-
   /**
    * Normalize the input sentence by removing unwanted characters and splitting it into an array of words.
    * @param sentence - The sentence to normalize.
@@ -9,7 +8,7 @@ export class ProfanityChecker extends ProfanityConfig {
    */
   public static normalizeSentence(sentence: string): string[] {
     return sentence
-      .replace(/[^a-zA-Z0-9àâäéèêëîïôöùûüç\s.,!?]/g, ' ') // Supprimer uniquement les caractères indésirables.
+      .replace(/[^a-zA-Z0-9àâäéèêëîïôöùûüç\s.,!?]/gu, ' ') // Ajout du modificateur 'u' pour Unicode et 'g' pour global
       .trim() // Supprime les espaces en début/fin.
       .toLowerCase() // Convertir en minuscule.
       .split(/\s+/); // Divise en mots.
@@ -24,8 +23,11 @@ export class ProfanityChecker extends ProfanityConfig {
     const words = this.normalizeSentence(sentence);
 
     return words.some((word) => {
-      const cleanedWord = word.replace(/[.,!?]+$/g, '').toLowerCase(); // Remove trailing punctuations.
-      return this.badWordsSet.has(cleanedWord) && !this.whiteListWordsSet.has(cleanedWord);
+      const cleanedWord = word.replace(/[.,!?]+$/u, '').toLowerCase();
+      return (
+        this.badWordsSet.has(cleanedWord) &&
+        !this.whiteListWordsSet.has(cleanedWord)
+      );
     });
   }
 
@@ -37,9 +39,12 @@ export class ProfanityChecker extends ProfanityConfig {
   public static censoredSentence(sentence: string): string {
     const words = this.normalizeSentence(sentence);
     const censoredWords = words.map((word) => {
-      const cleanedWord = word.replace(/[.,!?]+$/g, '').toLowerCase(); // Remove trailing punctuations.
+      const cleanedWord = word.replace(/[.,!?]+$/u, '').toLowerCase();
 
-      if (this.badWordsSet.has(cleanedWord) && !this.whiteListWordsSet.has(cleanedWord)) {
+      if (
+        this.badWordsSet.has(cleanedWord) &&
+        !this.whiteListWordsSet.has(cleanedWord)
+      ) {
         return '*'.repeat(cleanedWord.length) + word.slice(cleanedWord.length); // Replace with asterisks, keeping punctuation.
       }
       return word; // Keep the original word if not a bad word.
