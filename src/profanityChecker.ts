@@ -1,61 +1,64 @@
 import { ProfanityConfig } from './profanityConfig.js';
 
-/**
- * Profanity checker that inherits configuration settings from ProfanityConfig.
- * Provides methods to check bad words in a sentence and censor them.
- */
 export class ProfanityChecker extends ProfanityConfig {
+
   /**
-   * Normalizes a sentence by removing non-alphabetical characters and splitting it into words.
+   * Normalize the input sentence by removing unwanted characters and splitting it into an array of words.
    * @param sentence - The sentence to normalize.
-   * @returns An array of words from the sentence.
+   * @returns {string[]} - An array of normalized words.
    */
-  private static normalizeSentence(sentence: string): string[] {
-    return sentence.replace(/[^a-zA-Zàâäéèêëîïôöùûüç\s]/g, '').split(/\s+/);
+  public static normalizeSentence(sentence: string): string[] {
+    return sentence
+      .replace(/[^a-zA-Z0-9àâäéèêëîïôöùûüç\s.,!?]/g, ' ') // Supprimer uniquement les caractères indésirables.
+      .trim() // Supprime les espaces en début/fin.
+      .toLowerCase() // Convertir en minuscule.
+      .split(/\s+/); // Divise en mots.
   }
 
   /**
-   * Checks whether the sentence contains any bad words from the badWordsSet, excluding whitelisted words.
-   * @param sentence - The sentence to check for bad words.
-   * @returns `true` if bad words are found, `false` otherwise.
+   * Check if the sentence contains any bad words.
+   * @param sentence - The sentence to check.
+   * @returns {boolean} - True if bad words are found, otherwise false.
    */
   public static hasBadWords(sentence: string): boolean {
     const words = this.normalizeSentence(sentence);
+
     return words.some((word) => {
-      return (
-        this.badWordsSet.has(word.toLowerCase()) &&
-        !this.whiteListWordsSet.has(word.toLowerCase())
-      );
+      const cleanedWord = word.replace(/[.,!?]+$/g, '').toLowerCase(); // Remove trailing punctuations.
+      return this.badWordsSet.has(cleanedWord) && !this.whiteListWordsSet.has(cleanedWord);
     });
   }
 
   /**
-   * Censors bad words in the sentence by replacing them with the censored character.
+   * Censor bad words in the sentence by replacing them with asterisks.
    * @param sentence - The sentence to censor.
-   * @returns The sentence with censored words replaced by the censor character.
+   * @returns {string} - The censored sentence.
    */
   public static censoredSentence(sentence: string): string {
     const words = this.normalizeSentence(sentence);
-    const censoredWords = words.map((word) =>
-      this.badWordsSet.has(word.toLowerCase()) &&
-      !this.whiteListWordsSet.has(word.toLowerCase())
-        ? this.censoreSet.repeat(word.length)
-        : word,
-    );
-    return censoredWords.join(' ');
+    const censoredWords = words.map((word) => {
+      const cleanedWord = word.replace(/[.,!?]+$/g, '').toLowerCase(); // Remove trailing punctuations.
+
+      if (this.badWordsSet.has(cleanedWord) && !this.whiteListWordsSet.has(cleanedWord)) {
+        return '*'.repeat(cleanedWord.length) + word.slice(cleanedWord.length); // Replace with asterisks, keeping punctuation.
+      }
+      return word; // Keep the original word if not a bad word.
+    });
+
+    return censoredWords.join(' ').trim(); // Join words into a sentence.
   }
 
   /**
-   * Returns a list of all bad words currently in the badWordsSet.
-   * @returns An array of bad words.
+   * List all bad words currently in the set.
+   * @returns {string[]} - An array of bad words.
    */
-  public static listbadWords(): string[] {
-    return Array.from(this.badWordsSet);
+  public static listBadWords(): string[] {
+    return Array.from(this.badWordsSet); // Convert the set to an array.
   }
 
   /**
-   * Returns a list of all whitelisted words currently in the whiteListWordsSet.
-   * @returns An array of whitelisted words.
+   * List all whitelisted words currently in the set.
+   * @returns {string[]} - An array of whitelisted words.
    */
   public static listWhiteListWords(): string[] {
     return Array.from(this.whiteListWordsSet);
