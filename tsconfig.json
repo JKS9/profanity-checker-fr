@@ -15,8 +15,8 @@
     "noImplicitOverride": true,
     /* If transpiling with TypeScript: */
     "module": "NodeNext",
-    "outDir": "dist",
-    "rootDir": "src",
+    "outDir": "./dist", // Assurez-vous que ce répertoire est distinct
+    "rootDir": "./src", // Assurez-vous que ce répertoire est distinct
     "sourceMap": true,
     /* AND if you're building for a library: */
     "declaration": true,
@@ -24,5 +24,7 @@
     "declarationMap": true,
     // ...other options
     "lib": ["es2022"]
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

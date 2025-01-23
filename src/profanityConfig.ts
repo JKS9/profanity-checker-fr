@@ -32,6 +32,19 @@ export class ProfanityConfig {
   }
 
   /**
+   * Deletes bad words from the badWordsSet.
+   * Aceepts either a single string or an array of strings.
+   * @param words - The word(s) to delete from the bad words set.
+   */
+  public static deleteBadWords(words: string | string[]): void {
+    if (typeof words === 'string') {
+      this.badWordsSet.delete(words.toLowerCase());
+    } else if (Array.isArray(words)) {
+      words.forEach((word) => this.badWordsSet.delete(word.toLowerCase()));
+    }
+  }
+
+  /**
    * Adds words to the whitelist. Whitelisted words will not be censored.
    * Accepts either a single string or an array of strings.
    * @param words - The word(s) to add to the whitelist.
@@ -41,6 +54,21 @@ export class ProfanityConfig {
       this.whiteListWordsSet.add(words.toLowerCase());
     } else {
       words.forEach((word) => this.whiteListWordsSet.add(word.toLowerCase()));
+    }
+  }
+
+  /**
+   * Deletes words from the whitelist.
+   * Accepts either a single string or an array of strings.
+   * @param words - The word(s) to delete from the whitelist.
+   */
+  public static deleteWhiteList(words: string | string[]): void {
+    if (typeof words === 'string') {
+      this.whiteListWordsSet.delete(words.toLowerCase());
+    } else if (Array.isArray(words)) {
+      words.forEach((word) =>
+        this.whiteListWordsSet.delete(word.toLowerCase()),
+      );
     }
   }
 }

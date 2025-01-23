@@ -1,5 +1,11 @@
 # profanity-checker-fr
 
+## 1.2.0
+
+### Minor Changes
+
+- 5d3e4c4: addition of two delete methods for complete management of words added to 'badwords' or 'whitelist'.
+
 ## 1.1.0
 
 ### Minor Changes
