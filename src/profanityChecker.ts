@@ -23,7 +23,7 @@ export class ProfanityChecker extends ProfanityConfig {
     const words = this.normalizeSentence(sentence);
 
     return words.some((word) => {
-      const cleanedWord = word.replace(/[.,!?]+$/u, '').toLowerCase();
+      const cleanedWord = word.replace(/[.,!?]+$/gu, '').toLowerCase();
       return (
         this.badWordsSet.has(cleanedWord) &&
         !this.whiteListWordsSet.has(cleanedWord)
@@ -39,7 +39,7 @@ export class ProfanityChecker extends ProfanityConfig {
   public static censoredSentence(sentence: string): string {
     const words = this.normalizeSentence(sentence);
     const censoredWords = words.map((word) => {
-      const cleanedWord = word.replace(/[.,!?]+$/u, '').toLowerCase();
+      const cleanedWord = word.replace(/[.,!?]+$/gu, '').toLowerCase();
 
       if (
         this.badWordsSet.has(cleanedWord) &&
