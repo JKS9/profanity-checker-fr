@@ -1,0 +1,8 @@
+# Code Owners
+
+# Default owners for the entire project
+* @JKS9
+
+# Specific owners
+/src/ @JKS9
+/tests/ @JKS9
