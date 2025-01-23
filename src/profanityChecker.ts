@@ -45,7 +45,7 @@ export class ProfanityChecker extends ProfanityConfig {
         this.badWordsSet.has(cleanedWord) &&
         !this.whiteListWordsSet.has(cleanedWord)
       ) {
-        return '*'.repeat(cleanedWord.length) + word.slice(cleanedWord.length); // Replace with asterisks, keeping punctuation.
+        return this.censoreSet.repeat(cleanedWord.length) + word.slice(cleanedWord.length); // Replace with asterisks, keeping punctuation.
       }
       return word; // Keep the original word if not a bad word.
     });
