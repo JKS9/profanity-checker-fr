@@ -1,5 +1,11 @@
 # profanity-checker-fr
 
+## 1.2.1
+
+### Patch Changes
+
+- 253adff: add contribution files
+
 ## 1.2.0
 
 ### Minor Changes
