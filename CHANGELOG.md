@@ -1,5 +1,11 @@
 # profanity-checker-fr
 
+## 1.3.0
+
+### Minor Changes
+
+- 7de66c8: Addition of “word variants” so that the user does not change the character in a forbidden word.
+
 ## 1.2.1
 
 ### Patch Changes
