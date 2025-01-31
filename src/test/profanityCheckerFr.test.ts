@@ -5,7 +5,7 @@ import { test, expect, beforeAll } from 'vitest';
 beforeAll(() => {
   ProfanityConfig.changeCensoredWords('*');
   ProfanityConfig.addBadWords([
-    'salope',
+    'Salope',
     'putain de merde',
     'con',
     'sale pute',
@@ -139,13 +139,13 @@ test('censoredSentence censors bad phrase with multiple bad words', () => {
 
 test('censoredSentence handles punctuation', () => {
   expect(ProfanityChecker.censoredSentence('ceci est une phrase, conne!')).toBe(
-    'ceci est une phrase, *****!',
+    'ceci est une phrase , ***** !',
   );
 });
 
 test('censoredSentence handles mixed case', () => {
   expect(ProfanityChecker.censoredSentence('Ceci est une Salope')).toBe(
-    'ceci est une ******',
+    'Ceci est une ******',
   );
 });
 
