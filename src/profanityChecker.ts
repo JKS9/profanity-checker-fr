@@ -1,29 +1,17 @@
 import { ProfanityConfig } from './profanityConfig.js';
+import { parseString } from './utils/normalize.js';
 
 export class ProfanityChecker extends ProfanityConfig {
-  /**
-   * Normalize the input sentence by removing unwanted characters and splitting it into an array of words.
-   * @param sentence - The sentence to normalize.
-   * @returns {string[]} - An array of normalized words.
-   */
-  public static normalizeSentence(sentence: string): string[] {
-    return sentence
-      .replace(/[^a-zA-Z0-9àâäéèêëîïôöùûüç\s.,!?]/gu, ' ') // Ajout du modificateur 'u' pour Unicode et 'g' pour global
-      .trim() // Supprime les espaces en début/fin.
-      .toLowerCase() // Convertir en minuscule.
-      .split(/\s+/); // Divise en mots.
-  }
-
   /**
    * Check if the sentence contains any bad words.
    * @param sentence - The sentence to check.
    * @returns {boolean} - True if bad words are found, otherwise false.
    */
   public static hasBadWords(sentence: string): boolean {
-    const words = this.normalizeSentence(sentence);
+    const words = parseString(sentence);
 
     return words.some((word) => {
-      const cleanedWord = word.replace(/[.,!?]$/gu, '').toLowerCase();
+      const cleanedWord = word.replace(/[.,!?]/gu, '').toLowerCase();
       return (
         this.badWordsSet.has(cleanedWord) &&
         !this.whiteListWordsSet.has(cleanedWord)
@@ -37,15 +25,11 @@ export class ProfanityChecker extends ProfanityConfig {
    * @returns {string} - The censored sentence.
    */
   public static censoredSentence(sentence: string): string {
-    const words = this.normalizeSentence(sentence);
-    const censoredWords = words.map((word) => {
-      const cleanedWord = word.replace(/[.,!?]$/gu, '').toLowerCase();
+    const words = parseString(sentence);
 
-      if (
-        this.badWordsSet.has(cleanedWord) &&
-        !this.whiteListWordsSet.has(cleanedWord)
-      ) {
-        return this.censoreSet.repeat(cleanedWord.length) + word.slice(cleanedWord.length); // Replace with asterisks, keeping punctuation.
+    const censoredWords = words.map((word) => {
+      if (this.badWordsSet.has(word) && !this.whiteListWordsSet.has(word)) {
+        return this.censoreSet.repeat(word.length); // Replace with asterisks, keeping punctuation.
       }
       return word; // Keep the original word if not a bad word.
     });
